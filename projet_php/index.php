@@ -50,6 +50,9 @@ $conn->close();
                 <a href="signup.php" class="button">S'inscrire</a>
             <?php endif; ?>
         </div>
+        <div class="button-container">
+            <a href="index.php" class="button">Accueil</a>
+        </div>
     </header>
     <main>
         <section id="car-list">

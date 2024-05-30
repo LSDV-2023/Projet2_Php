@@ -27,12 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
             header("Location: index.php");
-            exit();
         } else {
-            $login_error = "Mot de passe incorrect.";
+            echo "Mot de passe incorrect.";
         }
     } else {
-        $login_error = "Aucun utilisateur trouvé avec ce name d'utilisateur.";
+        echo "Aucun utilisateur trouvé avec ce nom d'utilisateur.";
     }
 }
 
@@ -44,24 +43,25 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter</title>
+    <title>Connexion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Se connecter</h1>
+        <h1>Connexion</h1>
+        <div class="button-container">
+            <a href="index.php" class="button">Accueil</a>
+        </div>
     </header>
     <main>
-        <form method="POST" action="">
-            <input type="hidden" name="login" value="1">
-            <label for="username">Nom d'utilisateur:</label>
-            <input type="text" name="username" id="username" required>
-            <label for="password">Mot de passe:</label>
-            <input type="password" name="password" id="password" required>
-            <input type="submit" value="Se connecter">
-            <?php if (isset($login_error)) { echo "<p style='color: red;'>$login_error</p>"; } ?>
-        </form>
-        <p>Pas encore inscrit? <a href="signup.php">S'inscrire</a></p>
+        <section id="login-form">
+            <form method="POST" action="">
+                <input type="hidden" name="login" value="1">
+                <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                <input type="password" name="password" placeholder="Mot de passe" required>
+                <input type="submit" value="Se connecter">
+            </form>
+        </section>
     </main>
 </body>
 </html>

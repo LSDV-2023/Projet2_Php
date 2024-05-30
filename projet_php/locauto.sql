@@ -152,6 +152,7 @@ INSERT INTO `typesclient` (`id_type_client`, `type_client`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `voitures` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
   `immatriculation` varchar(16) NOT NULL,
   `marque` varchar(256) NOT NULL,
   `modele` varchar(256) NOT NULL,
@@ -223,37 +224,24 @@ ALTER TABLE `louer`
 ALTER TABLE `voitures`
   ADD CONSTRAINT `voiture_categorie` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`);
 
+-- --------------------------------------------------------
 
-ALTER TABLE voitures ADD image VARCHAR(255);
-
-ALTER TABLE voitures ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY;
-
-CREATE TABLE IF NOT EXISTS `reservations` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT NOT NULL,
-    `car_id` INT NOT NULL,
-    `days` INT NOT NULL,
-    `kilometers` INT NOT NULL,
-    `reservation_date` DATE NOT NULL,
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
-    FOREIGN KEY (`car_id`) REFERENCES `voitures`(`id`)
-);
+--
+-- Structure de la table `users`
+--
 
 CREATE TABLE IF NOT EXISTS `users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `password` VARCHAR(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `voitures` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `immatriculation` VARCHAR(50) NOT NULL,
-    `marque` VARCHAR(50) NOT NULL,
-    `modele` VARCHAR(50) NOT NULL,
-    `image` VARCHAR(100) NOT NULL,
-    `compteur` INT NOT NULL
-);
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reservations`
+--
 
 CREATE TABLE IF NOT EXISTS `reservations` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -262,13 +250,11 @@ CREATE TABLE IF NOT EXISTS `reservations` (
     `days` INT NOT NULL,
     `kilometers` INT NOT NULL,
     `reservation_date` DATE NOT NULL,
+    `total_price` DECIMAL(10, 2) AS (days * (SELECT prix FROM categories WHERE id_categorie = (SELECT id_categorie FROM voitures WHERE id = car_id))) STORED,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
     FOREIGN KEY (`car_id`) REFERENCES `voitures`(`id`)
-);
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
