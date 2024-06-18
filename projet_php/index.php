@@ -34,8 +34,12 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Voitures</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <header>
         <h1>Liste des Voitures</h1>
         <form method="GET" action="">
@@ -61,7 +65,7 @@ $conn->close();
                 while($row = $result->fetch_assoc()) {
                     echo "<div class='car'>";
                     echo "<a href='reservation.php?car_id={$row['id']}'>";
-                    echo "<img src='/projet_php/imagesLocauto/{$row['image']}' alt='Image de {$row['marque']}'>";
+                    echo "<img src='imagesLocauto/{$row['image']}' alt='Image de {$row['marque']}'>";
                     echo "<h2>{$row['marque']} {$row['modele']}</h2>";
                     echo "<p>Immatriculation: {$row['immatriculation']}</p>";
                     echo "<p>Compteur: {$row['compteur']}</p>";

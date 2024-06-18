@@ -65,7 +65,7 @@ $conn->close();
     <main>
         <div class="car-details">
             <?php if ($car): ?>
-                <img src="/projet_php/imagesLocauto/<?php echo $car['image']; ?>" alt="Image de <?php echo $car['marque']; ?>">
+                <img src="imagesLocauto/<?php echo $car['image']; ?>" alt="Image de <?php echo $car['marque']; ?>">
                 <h2><?php echo $car['marque'] . ' ' . $car['modele']; ?></h2>
                 <p>Immatriculation: <?php echo $car['immatriculation']; ?></p>
                 <p>Compteur: <?php echo $car['compteur']; ?></p>
