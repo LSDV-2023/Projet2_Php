@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
-    color: #333;
+    color: #ffffff;
 }
 
 /* Style pour l'en-tête */
@@ -331,11 +331,12 @@ main {
 }
 
 .crédits {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: var(--secondary-color);
   text-align: center;
   margin-top: 1rem;
-  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-family: garamond;
+
 }
 a {
   color: inherit;
@@ -344,4 +345,24 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+h1 {
+  font-family: "Roboto Mono", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 2.5em; /* Taille de police plus grande */
+  font-weight: bold,900; /* Gras pour plus d'impact */
+  color: #FFFFFF; /* Blanc pour un contraste maximal */
+  line-height: 1.5; /* Augmenter l'espacement entre les lignes */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Ombre portée pour la profondeur */
+}
+
+  /* Animation de survol */
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }

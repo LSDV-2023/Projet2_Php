@@ -32,21 +32,22 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Voitures</title>
+    <title>Locauto</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Liste des Voitures</h1>
+        <h1>Locauto</h1>
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Rechercher par modèle, marque, etc." />
             <input type="submit" value="Rechercher" />
         </form>
         <div class="button-container">
-            <?php if(isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['username'])): ?>
+            <p>Bonjour, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
                 <a href="logout.php" class="button">Se déconnecter</a>
             <?php else: ?>
-                <a href="login.php" class="button">Se connecter</a>
+                <a href="signup.php?registered=true" class="button">Se connecter</a>
                 <a href="signup.php" class="button">S'inscrire</a>
             <?php endif; ?>
         </div>
@@ -74,11 +75,8 @@ $conn->close();
             ?>
         </section>
     </main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-<footer>
+<footer class=crédits>
     <p>Réalisé par Lucas Eveillard et Louis Bouhours</p>
 </footer>
 </html>
